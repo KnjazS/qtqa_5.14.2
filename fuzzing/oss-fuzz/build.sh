@@ -15,9 +15,6 @@
 #
 ################################################################################
 
-# clean $WORK and $OUT directories
-rm -rf $WORK/* $WORK/.* $OUT/* $OUT/.*
-
 # add the flags to Qt build, gratefully borrowed from karchive
 cd $SRC/qt/qtbase/mkspecs
 sed -i -e "s/QMAKE_CXXFLAGS    += -stdlib=libc++/QMAKE_CXXFLAGS    += -stdlib=libc++  $CXXFLAGS\nQMAKE_CFLAGS += $CFLAGS/g" linux-clang-libc++/qmake.conf
