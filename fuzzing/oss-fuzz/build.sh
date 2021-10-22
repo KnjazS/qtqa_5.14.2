@@ -36,6 +36,7 @@ zip -j $WORK/ssl.pem.zip $SRC/qtqa/fuzzing/testcases/ssl.pem/*
 zip -j $WORK/text $SRC/qtqa/fuzzing/testcases/text/* $SRC/afltestcases/others/text/*
 zip -j $WORK/xml $SRC/qtqa/fuzzing/testcases/xml/* $SRC/afltestcases/others/xml/*
 zip -j $WORK/datetime $SRC/qtqa/fuzzing/testcases/datetime/*
+zip -j $WORK/regexp $SRC/qtqa/fuzzing/testcases/regexp/*
 
 # build fuzzers
 
@@ -85,3 +86,4 @@ build_fuzzer "new" "qtbase" "gui/text/qtextlayout/beginlayout/beginlayout.pro" "
 build_fuzzer "new" "qtbase" "network/ssl/qsslcertificate/qsslcertificate/pem/pem.pro" "ssl.pem"
 build_fuzzer "new" "qtbase" "corelib/tools/qcryptographichash/result/result.pro"
 build_fuzzer "new" "qtbase" "corelib/time/qdatetime/fromstring/fromstring.pro" "datetime"
+build_fuzzer "new" "qtbase" "corelib/text/qregularexpression/optimize" "regexp" "$SRC/afldictionaries/regexp.dict"
