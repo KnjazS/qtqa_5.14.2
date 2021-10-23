@@ -39,6 +39,7 @@ zip -j $WORK/datetime $SRC/qtqa/fuzzing/testcases/datetime/*
 zip -j $WORK/regexp $SRC/qtqa/fuzzing/testcases/regexp/*
 zip -j $WORK/cbor $SRC/qtqa/fuzzing/testcases/cbor/*
 zip -j $WORK/images $SRC/qtqa/fuzzing/testcases/{bmp,gif,ico,jpg,png,svg,xbm,xpm}/* $SRC/afltestcases/images/*/*
+zip -j $WORK/icc $SRC/qtqa/fuzzing/testcases/icc/*
 
 # prepare merged dictionaries
 mkdir $WORK/merged_dicts
@@ -96,3 +97,4 @@ build_fuzzer "new" "qtbase" "corelib/text/qregularexpression/optimize" "regexp" 
 build_fuzzer "new" "qtbase" "corelib/serialization/qcborstreamreader/next" "cbor"
 build_fuzzer "new" "qtbase" "corelib/serialization/qtextstream/extractionoperator-float" "text"
 build_fuzzer "new" "qtbase" "gui/image/qimage/loadfromdata" "images" "$WORK/merged_dicts/images.dict"
+build_fuzzer "new" "qtbase" "gui/painting/qcolorspace/fromiccprofile" "icc" "$SRC/afldictionaries/iccprofile.dict"
