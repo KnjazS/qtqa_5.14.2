@@ -28,6 +28,7 @@ sed -i -e "s/QMAKE_CFLAGS_OPTIMIZE_FULL = -O3/QMAKE_CFLAGS_OPTIMIZE_FULL = -O1/g
 cd $WORK
 MAKEFLAGS=-j$(nproc) $SRC/qt/configure -qt-libmd4c -platform linux-clang-libc++ -static -opensource -confirm-license -no-opengl -nomake tests -nomake examples -prefix $PWD/qtbase -D QT_NO_DEPRECATED_WARNINGS
 make -j$(nproc)
+make -j$(nproc) module-qtsvg
 
 # prepare corpus files
 zip -j $WORK/html $SRC/qtqa/fuzzing/testcases/html/*
@@ -93,8 +94,9 @@ build_fuzzer "new" "qtbase" "gui/text/qtextlayout/beginlayout/beginlayout.pro" "
 build_fuzzer "new" "qtbase" "network/ssl/qsslcertificate/qsslcertificate/pem/pem.pro" "ssl.pem"
 build_fuzzer "new" "qtbase" "corelib/tools/qcryptographichash/result/result.pro"
 build_fuzzer "new" "qtbase" "corelib/time/qdatetime/fromstring/fromstring.pro" "datetime"
-build_fuzzer "new" "qtbase" "corelib/text/qregularexpression/optimize" "regexp" "$SRC/afldictionaries/regexp.dict"
-build_fuzzer "new" "qtbase" "corelib/serialization/qcborstreamreader/next" "cbor"
-build_fuzzer "new" "qtbase" "corelib/serialization/qtextstream/extractionoperator-float" "text"
-build_fuzzer "new" "qtbase" "gui/image/qimage/loadfromdata" "images" "$WORK/merged_dicts/images.dict"
-build_fuzzer "new" "qtbase" "gui/painting/qcolorspace/fromiccprofile" "icc" "$SRC/afldictionaries/iccprofile.dict"
+build_fuzzer "new" "qtbase" "corelib/text/qregularexpression/optimize/optimize.pro" "regexp" "$SRC/afldictionaries/regexp.dict"
+build_fuzzer "new" "qtbase" "corelib/serialization/qcborstreamreader/next/next.pro" "cbor"
+build_fuzzer "new" "qtbase" "corelib/serialization/qtextstream/extractionoperator-float/extractionoperator-float.pro" "text"
+build_fuzzer "new" "qtbase" "gui/image/qimage/loadfromdata/loadfromdata.pro" "images" "$WORK/merged_dicts/images.dict"
+build_fuzzer "new" "qtbase" "gui/painting/qcolorspace/fromiccprofile/fromiccprofile.pro" "icc" "$SRC/afldictionaries/iccprofile.dict"
+build_fuzzer "new" "qtsvg" "svg/qsvgrenderer/render/render.pro" "svg" "$SRC/afldictionaries/svg.dict"
