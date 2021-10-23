@@ -38,9 +38,14 @@ zip -j $WORK/xml $SRC/qtqa/fuzzing/testcases/xml/* $SRC/afltestcases/others/xml/
 zip -j $WORK/datetime $SRC/qtqa/fuzzing/testcases/datetime/*
 zip -j $WORK/regexp $SRC/qtqa/fuzzing/testcases/regexp/*
 zip -j $WORK/cbor $SRC/qtqa/fuzzing/testcases/cbor/*
+zip -j $WORK/images $SRC/qtqa/fuzzing/testcases/{bmp,gif,ico,jpg,png,svg,xbm,xpm}/* $SRC/afltestcases/images/*/*
+
+# prepare merged dictionaries
+mkdir $WORK/merged_dicts
+cat $SRC/afldictionaries/{css,html_tags}.dict > "$WORK/merged_dicts/css_and_html.dict"
+cat $SRC/afldictionaries/{bmp,exif,gif,jpeg,png,svg,tiff,webp}.dict > "$WORK/merged_dicts/images.dict"
 
 # build fuzzers
-
 build_fuzzer() {
     local nameScheme=$1
     local module=$2
@@ -90,3 +95,4 @@ build_fuzzer "new" "qtbase" "corelib/time/qdatetime/fromstring/fromstring.pro" "
 build_fuzzer "new" "qtbase" "corelib/text/qregularexpression/optimize" "regexp" "$SRC/afldictionaries/regexp.dict"
 build_fuzzer "new" "qtbase" "corelib/serialization/qcborstreamreader/next" "cbor"
 build_fuzzer "new" "qtbase" "corelib/serialization/qtextstream/extractionoperator-float" "text"
+build_fuzzer "qtbase" "gui/image/qimage/loadfromdata" "images" "$WORK/merged_dicts/images.dict"
