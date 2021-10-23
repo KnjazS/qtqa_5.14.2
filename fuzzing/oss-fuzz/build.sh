@@ -37,6 +37,7 @@ zip -j $WORK/text $SRC/qtqa/fuzzing/testcases/text/* $SRC/afltestcases/others/te
 zip -j $WORK/xml $SRC/qtqa/fuzzing/testcases/xml/* $SRC/afltestcases/others/xml/*
 zip -j $WORK/datetime $SRC/qtqa/fuzzing/testcases/datetime/*
 zip -j $WORK/regexp $SRC/qtqa/fuzzing/testcases/regexp/*
+zip -j $WORK/cbor $SRC/qtqa/fuzzing/testcases/cbor/*
 
 # build fuzzers
 
@@ -78,7 +79,7 @@ build_fuzzer() {
     rm -r build_fuzzer
 }
 
-build_fuzzer "new" "qtbase" "corelib/serialization/qcborvalue/fromcbor/fromcbor.pro"
+build_fuzzer "new" "qtbase" "corelib/serialization/qcborvalue/fromcbor/fromcbor.pro" "cbor"
 build_fuzzer "new" "qtbase" "corelib/serialization/qxmlstream/qxmlstreamreader/readnext/readnext.pro" "xml" "$SRC/afldictionaries/xml.dict"
 build_fuzzer "new" "qtbase" "gui/text/qtextdocument/sethtml/sethtml.pro" "html" "$SRC/afldictionaries/html_tags.dict"
 build_fuzzer "new" "qtbase" "gui/text/qtextdocument/setmarkdown/setmarkdown.pro" "markdown"
@@ -87,3 +88,4 @@ build_fuzzer "new" "qtbase" "network/ssl/qsslcertificate/qsslcertificate/pem/pem
 build_fuzzer "new" "qtbase" "corelib/tools/qcryptographichash/result/result.pro"
 build_fuzzer "new" "qtbase" "corelib/time/qdatetime/fromstring/fromstring.pro" "datetime"
 build_fuzzer "new" "qtbase" "corelib/text/qregularexpression/optimize" "regexp" "$SRC/afldictionaries/regexp.dict"
+build_fuzzer "new" "qtbase" "corelib/serialization/qcborstreamreader/next" "cbor"
